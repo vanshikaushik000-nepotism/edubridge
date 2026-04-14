@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="EduBridge — Parent-Student Engagement Platform. Track grades, attendance, AI insights, and more.">
+  <meta name="theme-color" content="#0a0e1a">
+  <title>EduBridge — Parent-Student Engagement Platform</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/pages.css">
+
+  <style>
+    /* Inline critical: loading screen shows immediately */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: #0a0e1a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+    #loading-screen.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-ring {
+      width: 52px; height: 52px;
+      border: 3px solid rgba(255,255,255,0.08);
+      border-top-color: #6366f1;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-brand {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    }
+    .loader-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; box-shadow: 0 4px 16px rgba(99,102,241,0.4);
+    }
+    .loader-text {
+      font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .loader-sub {
+      font-family: 'Inter', sans-serif; font-size: 13px; color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-brand">
+      <div class="loader-icon">🎓</div>
+      <div class="loader-text">EduBridge</div>
+    </div>
+    <div class="loader-ring"></div>
+    <div class="loader-sub">Loading your dashboard...</div>
+  </div>
+
+  <!-- App Root -->
+  <div id="app"></div>
+
+  <!-- Scripts -->
+  <script src="/js/utils.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/charts.js"></script>
+  <script src="/js/components.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
