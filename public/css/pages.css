@@ -1,0 +1,532 @@
+/* ═══════════════════════════════════════════
+   EduBridge — Page-Specific Styles
+   Dashboard, Grades, Attendance, Calendar
+   ═══════════════════════════════════════════ */
+
+/* ── Stats Grid ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+@media (max-width: 1200px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr; } }
+
+/* ── Dashboard Grid ── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--space-4);
+}
+@media (max-width: 1100px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Grade Cards Grid ── */
+.grades-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+@media (max-width: 900px) { .grades-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .grades-grid { grid-template-columns: 1fr; } }
+
+.grade-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out);
+  backdrop-filter: blur(12px);
+}
+.grade-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-accent);
+}
+.grade-card-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+}
+.grade-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-3);
+  padding-left: var(--space-3);
+}
+.grade-card-subject {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+.grade-card-code {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+.grade-card-score {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  padding-left: var(--space-3);
+}
+.grade-card-max {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  font-weight: var(--weight-normal);
+}
+.grade-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-3);
+  padding-left: var(--space-3);
+}
+.grade-card-sparkline {
+  width: 80px;
+  height: 30px;
+}
+
+/* ── Attendance Heatmap ── */
+.heatmap-container {
+  padding: var(--space-5);
+}
+.heatmap-months {
+  display: flex;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+  padding-left: 30px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.heatmap-grid {
+  display: flex;
+  gap: 3px;
+}
+.heatmap-day-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-right: var(--space-2);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.heatmap-day-label {
+  height: 14px;
+  display: flex;
+  align-items: center;
+}
+.heatmap-weeks {
+  display: flex;
+  gap: 3px;
+}
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.heatmap-cell {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  transition: all var(--duration-fast);
+  cursor: pointer;
+}
+.heatmap-cell:hover {
+  outline: 2px solid var(--text-tertiary);
+  outline-offset: 1px;
+}
+.heatmap-cell.present { background: var(--accent-emerald); }
+.heatmap-cell.absent { background: var(--accent-coral); }
+.heatmap-cell.late { background: var(--accent-amber); }
+.heatmap-cell.empty { background: var(--bg-tertiary); opacity: 0.3; }
+.heatmap-cell.weekend { background: var(--bg-tertiary); opacity: 0.15; }
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+.heatmap-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.heatmap-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* ── Insight Cards ── */
+.insights-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.insight-card {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+.insight-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-accent);
+}
+.insight-card.positive { border-left: 3px solid var(--accent-emerald); }
+.insight-card.warning { border-left: 3px solid var(--accent-amber); }
+.insight-card.critical { border-left: 3px solid var(--accent-coral); }
+.insight-card.info { border-left: 3px solid var(--accent-indigo); }
+
+.insight-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  background: var(--bg-glass);
+}
+.insight-content { flex: 1; }
+.insight-title {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-1);
+}
+.insight-message {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+.insight-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.confidence-bar {
+  width: 60px;
+  height: 4px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.confidence-fill {
+  height: 100%;
+  background: var(--accent-indigo);
+  border-radius: var(--radius-full);
+}
+.insight-subject-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--bg-glass);
+  color: var(--text-tertiary);
+}
+
+/* ── Calendar Widget ── */
+.calendar-widget {
+  padding: var(--space-4);
+}
+.calendar-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+.calendar-month {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+}
+.calendar-nav {
+  display: flex;
+  gap: var(--space-2);
+}
+.calendar-grid-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: var(--space-2);
+}
+.calendar-day-name {
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-muted);
+  padding: var(--space-1);
+}
+.calendar-grid-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  position: relative;
+  color: var(--text-secondary);
+}
+.calendar-day:hover {
+  background: var(--bg-glass);
+}
+.calendar-day.today {
+  background: var(--accent-indigo-glow);
+  color: var(--accent-indigo-light);
+  font-weight: var(--weight-semibold);
+}
+.calendar-day.has-event::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-amber);
+  position: absolute;
+  bottom: 3px;
+}
+.calendar-day.other-month {
+  opacity: 0.3;
+}
+
+.calendar-events {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.calendar-event {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  font-size: var(--text-xs);
+  transition: all var(--duration-fast);
+}
+.calendar-event:hover { background: var(--bg-glass-hover); }
+.calendar-event-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.calendar-event-dot.exam { background: var(--accent-coral); }
+.calendar-event-dot.assignment { background: var(--accent-amber); }
+.calendar-event-dot.ptm { background: var(--accent-indigo); }
+.calendar-event-dot.holiday { background: var(--accent-emerald); }
+.calendar-event-dot.event { background: var(--accent-cyan); }
+.calendar-event-info { flex: 1; }
+.calendar-event-name {
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+.calendar-event-date {
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* ── Study Plan ── */
+.study-plan-card {
+  padding: var(--space-4);
+}
+.study-subject {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-2);
+  background: var(--bg-glass);
+}
+.study-subject-bar {
+  flex: 1;
+}
+.study-subject-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  margin-bottom: var(--space-1);
+}
+.study-subject-time {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* ── Teacher Grade Entry ── */
+.grade-entry-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+@media (max-width: 600px) {
+  .grade-entry-form { grid-template-columns: 1fr; }
+}
+
+/* ── Login Page ── */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+.login-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px circle at 20% 30%, rgba(99, 102, 241, 0.12), transparent 60%),
+    radial-gradient(500px circle at 80% 70%, rgba(139, 92, 246, 0.08), transparent 60%),
+    radial-gradient(400px circle at 50% 50%, rgba(16, 185, 129, 0.06), transparent 60%);
+  animation: gradientShift 8s ease infinite;
+  background-size: 200% 200%;
+}
+.login-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  width: 420px;
+  max-width: 90vw;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-xl);
+  animation: scaleIn var(--duration-slow) var(--ease-spring);
+}
+.login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+.login-logo-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
+}
+.login-logo-text {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+}
+.login-logo-text span {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.login-error {
+  padding: var(--space-3) var(--space-4);
+  background: var(--accent-coral-glow);
+  color: var(--accent-coral-light);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  display: none;
+}
+.login-error.show { display: block; }
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-muted);
+  font-size: var(--text-xs);
+}
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-primary);
+}
+
+.demo-accounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+}
+.demo-account {
+  padding: var(--space-3);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-md);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  font-size: var(--text-xs);
+}
+.demo-account:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-accent);
+}
+.demo-account-icon {
+  font-size: 24px;
+  margin-bottom: var(--space-1);
+}
+.demo-account-role {
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+
+/* ── Loading Screen ── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.4s, visibility 0.4s;
+}
+.loading-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+.loading-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--border-primary);
+  border-top-color: var(--accent-indigo);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: var(--space-4);
+}
+.loading-text {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
